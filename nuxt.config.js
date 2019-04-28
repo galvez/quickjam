@@ -1,3 +1,7 @@
 import serverMiddleware from './api'
 
-export default { serverMiddleware }
+export default {
+  serverMiddleware,
+  modules: ['@nuxt/http'],
+  http: {}
+}
