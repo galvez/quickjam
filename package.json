@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "eslint --fix --ext .js,.vue ."
+    "lint": "eslint --ext .js,.vue ."
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

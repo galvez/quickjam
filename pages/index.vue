@@ -2,12 +2,10 @@
   <div class="login">
     <input
       placeholder="Email"
-      :value="form.email"
-    >
+      :value="form.email">
     <input
       placeholder="Password"
-      :value="form.password"
-    >
+      :value="form.password">
     <button @click="login">
       Login
     </button>
