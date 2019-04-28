@@ -3,10 +3,10 @@
     <h2>Login</h2>
     <input
       placeholder="Email"
-      :value="form.email">
+      v-model="form.email">
     <input
       placeholder="Password"
-      :value="form.password">
+      v-model="form.password">
     <button @click="login">
       Login
     </button>
@@ -19,7 +19,17 @@ export default {
     form: {}
   }),
   methods: {
-    login() {
+    async login() {
+      const response = await
+        this.$http.$post('api/login', this.form)
+      if (response.token) {
+        this.$store.commit('authUser', {
+          name: this.form.name,
+          email: this.form.email,
+          token: response.token
+        })
+      }
+      this.$router.push('/')
     }
   }
 }

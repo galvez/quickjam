@@ -3,15 +3,15 @@
     <h2>Register</h2>
     <input
       placeholder="Name"
-      :value="form.name">
+      v-model="form.name">
     <input
       type="email"
       placeholder="Email"
-      :value="form.email">
+      v-model="form.email">
     <input
       type="password"
       placeholder="Password"
-      :value="form.password">
+      v-model="form.password">
     <button @click="register">
       Register
     </button>
@@ -25,9 +25,9 @@ export default {
   }),
   methods: {
     async register() {
-      const jsonResponse = await 
-        this.$http.$post('api/users', this.form)
-      if (jsonResponse.success) {
+      let jsonResponse = await this
+        .$http.$post('api/users', this.form)
+      if (jsonResponse && jsonResponse.success) {
         this.$router.push('/login')
       }
     }

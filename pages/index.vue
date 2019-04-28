@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hello, {{ user.name }}!
+    Hello, {{ user.email }}!
   </div>
 </template>
 
