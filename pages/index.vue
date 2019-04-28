@@ -1,30 +1,14 @@
 <template>
-  <div class="login">
-    <input
-      placeholder="Email"
-      :value="form.email">
-    <input
-      placeholder="Password"
-      :value="form.password">
-    <button @click="login">
-      Login
-    </button>
+  <div>
+    Hello, {{ user.name }}!
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  data: () => ({
-    form: {}
-  }),
-  async asyncData({ app }) {
-    const response = await app.$http.get('api/ping')
-    return {
-      pongMessage: await response.text()
-    }
-  },
-  mounted() {
-    alert(this.pongMessage)
-  }
+  middleware: 'auth',
+  computed: mapState(['user'])
 }
 </script>
