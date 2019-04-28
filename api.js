@@ -1,7 +1,7 @@
 import { sign, verify } from 'jsonwebtoken'
 import { json } from 'body-parser'
 import { parse } from 'cookie'
-import { addUser, authUser } from './db'
+import { addUser, authUser, getUser } from './db'
 
 const expiresIn = '90d'
 const sessionSecret = 'some truly random value'
@@ -42,6 +42,35 @@ export default [
         return
       }
       res.writeHead(403, 'Forbidden')
+      res.end()
+    }
+  },
+  (req, res, next) => {
+    if (!req.url.startsWith('/api')) {
+      return next()
+    }
+    if (!req.headers.authorization) {
+      res.statusCode = 401
+      res.end()
+      return
+    }
+    const tokenMatch = req.headers.authorization.match(/Bearer (.+)/)
+    if (tokenMatch) {
+      const jwtData = verify(tokenMatch[1], sessionSecret)
+      if (jwtData) {
+        req.email = jwtData.email
+        req.token = tokenMatch[1]
+        return next()
+      }
+    }
+    res.statusCode = 401
+    res.end()
+  },
+  {
+    path: '/api/user',
+    async handler(req, res, next) {
+      const user = await getUser(req.email)
+      res.json({ user })
       res.end()
     }
   },

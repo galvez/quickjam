@@ -8,5 +8,6 @@ export default {
   },
   http: {
     baseURL: 'http://localhost:3030'
-  }
+  },
+  plugins: ['~/plugins/http']
 }

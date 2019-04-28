@@ -33,3 +33,7 @@ export function authUser({ email, password }) {
   }
   return false
 }
+
+export function getUser(email) {
+  return db.users[email]
+}

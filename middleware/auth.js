@@ -6,6 +6,6 @@ export default function ({ store, route, redirect, req }) {
     })
   }
   if (!store.state.user.authenticated) {
-    redirect('/register')
+    return redirect('/register')
   }
 }

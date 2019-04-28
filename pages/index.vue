@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hello, {{ user.email }}!
+    Hello, {{ user.name }}!
   </div>
 </template>
 
@@ -9,6 +9,11 @@ import { mapState } from 'vuex'
 
 export default {
   middleware: 'auth',
-  computed: mapState(['user'])
+  data: () => ({
+    user: {}
+  }),
+  async asyncData({ $http, store }) {
+    return $http.$get('api/user')
+  }
 }
 </script>
