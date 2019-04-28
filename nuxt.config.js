@@ -3,5 +3,10 @@ import serverMiddleware from './api'
 export default {
   serverMiddleware,
   modules: ['@nuxt/http'],
-  http: {}
+  server: {
+    port: 3030,
+  },
+  http: {
+    baseURL: 'http://localhost:3030'
+  }
 }

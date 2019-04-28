@@ -14,5 +14,17 @@
 
 <script>
 export default {
+  data: () => ({
+    form: {}
+  }),
+  async asyncData({ app }) {
+    const response = await app.$http.get('api/ping')
+    return {
+      pongMessage: await response.text()
+    }
+  },
+  mounted() {
+    alert(this.pongMessage)
+  }
 }
 </script>
