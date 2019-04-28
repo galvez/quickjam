@@ -24,7 +24,6 @@ export default {
         this.$http.$post('api/login', this.form)
       if (response.token) {
         this.$store.commit('authUser', {
-          name: this.form.name,
           email: this.form.email,
           token: response.token
         })

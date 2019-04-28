@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 export const state = () => ({
   user: {
     email: null,
@@ -11,5 +13,8 @@ export const mutations = {
     state.user.email = user.email
     state.user.token = user.token
     state.user.authenticated = true
+    if (process.client) {
+      Cookies.set('quickjam-auth-token', user.token, { expires: 1 })
+    }
   }
 }

@@ -1,5 +1,6 @@
-import { sign } from 'jsonwebtoken'
+import { sign, verify } from 'jsonwebtoken'
 import { json } from 'body-parser'
+import { parse } from 'cookie'
 import { addUser, authUser } from './db'
 
 const expiresIn = '90d'
@@ -43,5 +44,19 @@ export default [
       res.writeHead(403, 'Forbidden')
       res.end()
     }
+  },
+  (req, res, next) => {
+    const cookies = req.headers.cookie || ''
+    const parsedCookies = parse(cookies) || {}
+    const token = parsedCookies['quickjam-auth-token']
+    if (token) {
+      const jwtData = verify(token, sessionSecret)
+      if (jwtData) {
+        req.email = jwtData.email
+        req.token = token
+        return next()
+      }
+    }
+    next()
   }
 ]
