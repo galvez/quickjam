@@ -15,7 +15,7 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.2.2",
-    "nuxt": "^2.6.3"
+    "nuxt": "^2.10.0"
   },
   "dependencies": {
     "@nuxt/http": "^0.1.1",

@@ -1,11 +1,11 @@
-export default function ({ store, route, redirect, req }) {
+export default function ({ $state, $actions, redirect, req }) {
   if (process.server && req.email) {
-    store.commit('authUser', {
+    $actions.authUser({
       token: req.token,
       email: req.email
     })
   }
-  if (!store.state.user.authenticated) {
+  if (!$state.user.authenticated) {
     return redirect('/register')
   }
 }

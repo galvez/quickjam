@@ -9,5 +9,11 @@ export default {
   http: {
     baseURL: process.env.SANDBOX_URL || 'http://localhost:3030'
   },
-  plugins: ['~/plugins/http']
+  features: {
+    store: false
+  },
+  plugins: [
+    '~/plugins/store',
+    '~/plugins/http'
+  ]
 }

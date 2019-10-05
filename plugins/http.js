@@ -1,7 +1,7 @@
-export default function ({ $http, store }) {
+export default function ({ $http, $state }) {
   $http.onRequest((config) => {
-    if (store.state.user.authenticated) {
-      config.headers.set('Authorization', `Bearer ${store.state.user.token}`)
+    if ($state.user.authenticated) {
+      config.headers.set('Authorization', `Bearer ${$state.user.token}`)
     }
     return config
   })
