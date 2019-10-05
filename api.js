@@ -1,10 +1,16 @@
-import { sign, verify } from 'jsonwebtoken'
+import { sign, verify as verifyJWT } from 'jsonwebtoken'
 import { json } from 'body-parser'
 import { parse } from 'cookie'
 import { addUser, authUser, getUser } from './db'
 
 const expiresIn = '90d'
 const sessionSecret = 'some truly random value'
+
+function verify (...args) {
+  try {
+    return verifyJWT(...args)
+  } catch (_) {}
+}
 
 export default [
   {

@@ -23,7 +23,7 @@ export default {
       const response = await
         this.$http.$post('api/login', this.form)
       if (response.token) {
-        this.$store.commit('authUser', {
+        this.$actions.authUser({
           email: this.form.email,
           token: response.token
         })

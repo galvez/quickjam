@@ -5,14 +5,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   middleware: 'auth',
   data: () => ({
     user: {}
   }),
-  async asyncData({ $http, store }) {
+  async asyncData({ $http }) {
     return $http.$get('api/user')
   }
 }
